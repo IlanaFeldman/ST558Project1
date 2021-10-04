@@ -1,0 +1,50 @@
+---
+title: "Vignette"
+author: "Ilana Feldman"
+date: "10/3/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r setup2}
+library(httr)
+library(jsonlite)
+library(tidyverse)
+
+```
+
+I'll be starting off with the encounter methods, although this doesn't have much statistical application, just to make sure that things are working properly. Something that's worth noting is that if you have "encounter-method/?limit=5&offset=3/2", this just ignores the 2 at the end, and if you have "encounter-method/2?limit=5&offset=3", this just ignores everything after the 2, since it has a specific ID. So I could take this either way, but I should probably prioritize the ID.
+
+```{r Endpoint1}
+base <- "https://pokeapi.co/api/v2/"
+endpoint <- "encounter-method/"
+
+EncounterMethod <- function(id = NULL, limit = NULL, offset = NULL) {
+  if (is.null(id) == FALSE) {
+    call <- paste0(base, endpoint, id)
+    if(!is.null(limit) | !is.null(offset)) {
+      warning("Combined ID with limit/offset. Ignoring the latter.")
+    }
+    Data <- content(GET(call))
+    DataFix1 <- as_tibble(Data) %>% unnest_wider(names, names_repair = "minimal")
+    names(DataFix1)[4] <- "fullname"
+    DataFix2 <- DataFix1 %>% unnest_wider(language, names_repair = "minimal")
+    names(DataFix2)[3] <- "language"
+    DataFix2 <- DataFix2[,-1]
+    return(DataFix2)
+  }
+  
+  else {
+    call <- paste0(base, endpoint, "?limit=", limit, "&offset=", offset)
+    Data <- content(GET(call))
+    DataFix <- as_tibble(Data[4]) %>% unnest_wider(results)
+    return(DataFix)
+  }
+}
+```
+
+
+
