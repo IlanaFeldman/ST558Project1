@@ -13,38 +13,166 @@ knitr::opts_chunk$set(echo = TRUE)
 library(httr)
 library(jsonlite)
 library(tidyverse)
-
+library(purrr)
+base <- "https://pokeapi.co/api/v2/"
 ```
 
-I'll be starting off with the encounter methods, although this doesn't have much statistical application, just to make sure that things are working properly. Something that's worth noting is that if you have "encounter-method/?limit=5&offset=3/2", this just ignores the 2 at the end, and if you have "encounter-method/2?limit=5&offset=3", this just ignores everything after the 2, since it has a specific ID. So I could take this either way, but I should probably prioritize the ID.
+I'll be starting off with the encounter methods, although this doesn't have much statistical application, just to make sure that things are working properly. Something that's worth noting is that if you have "encounter-method/?limit=5&offset=3/2", this just ignores the 2 at the end, and if you have "encounter-method/2?limit=5&offset=3", this just ignores everything after the 2, since it has a specific ID. I could take this either way, but I should probably prioritize the ID. I'll also return a warning if you try to put an ID + limit or ID + offset.
+
+I've also added an `alldata` argument, if limit/offset are used, to dig a level deeper and return the individual pieces of information on each of the entries, and a `language` argument to filter by language.
 
 ```{r Endpoint1}
-base <- "https://pokeapi.co/api/v2/"
-endpoint <- "encounter-method/"
+endpoint1 <- "encounter-method/"
 
-EncounterMethod <- function(id = NULL, limit = NULL, offset = NULL) {
+EncounterMethod <- function(id = NULL, limit = NULL, offset = NULL, alldata = FALSE, language = NULL) {
+  
+  # Handles any case where there is an ID
   if (is.null(id) == FALSE) {
-    call <- paste0(base, endpoint, id)
+    call <- paste0(base, endpoint1, id)
     if(!is.null(limit) | !is.null(offset)) {
       warning("Combined ID with limit/offset. Ignoring the latter.")
     }
-    Data <- content(GET(call))
-    DataFix1 <- as_tibble(Data) %>% unnest_wider(names, names_repair = "minimal")
-    names(DataFix1)[4] <- "fullname"
-    DataFix2 <- DataFix1 %>% unnest_wider(language, names_repair = "minimal")
-    names(DataFix2)[3] <- "language"
-    DataFix2 <- DataFix2[,-1]
-    return(DataFix2)
+    Data <- fromJSON(call)
+    DataRefined <- Data$names %>% mutate(order = Data$order)
+    
+    # Checks for language
+    if(!is.null(language)) {
+      if(toupper(language) %in% c("EN", "ENGLISH")) {
+        DataRefined <- DataRefined %>% filter(language$name == "en")
+      } else if (toupper(language) %in% c("DE", "GERMAN")) {
+        DataRefined <- DataRefined %>% filter(language$name == "de")
+      } else {stop("Language not identified in this database.")}
+    }
+    return(DataRefined)
   }
   
+  # If there isn't an ID, a limit and offset are used.
+  # This is set up so that either or both can be left blank.
   else {
-    call <- paste0(base, endpoint, "?limit=", limit, "&offset=", offset)
-    Data <- content(GET(call))
-    DataFix <- as_tibble(Data[4]) %>% unnest_wider(results)
-    return(DataFix)
+    call <- paste0(base, endpoint1, "?limit=", limit, "&offset=", offset)
+    Data <- fromJSON(call)
+    
+    # If alldata is TRUE, then we need to do a deeper dive, using purrr::map to query everything one level further in, and then sort out the data we want. In this case, that's just the names.
+    if (alldata == TRUE) {
+    AllData <- map(Data$results$url, fromJSON)
+    DataRefined <- NULL
+    for (i in 1:length(AllData)) {
+      DataRefined <- DataRefined %>% bind_rows(AllData[[i]]$names)
+    }
+    
+    # Check for language, as in the case with the ID input.
+    if(!is.null(language)) {
+      if(toupper(language) %in% c("EN", "ENGLISH")) {
+        DataRefined <- DataRefined %>% filter(language$name == "en")
+      } else if (toupper(language) %in% c("DE", "GERMAN")) {
+        DataRefined <- DataRefined %>% filter(language$name == "de")
+      } else {stop("Language not identified in this database.")}
+    }
+    return(DataRefined)
+    }
+    else {return(Data$results)}
   }
 }
 ```
 
+The following is a function call that will grab every single encounter method in English and put it into a neat, orderly tibble. I have already run this and stored the data, so in general, I won't be evaluating these since they make a large number of requests to the API.
 
+```{r Endpoint1Data, eval = FALSE}
+AllEncounterMethods <- EncounterMethod(limit = 27, alldata = TRUE, language = "English")
+```
+
+Next, I'll be making a function that calls various information about berries. This is significantly more complicated than EncounterMethods, since there are a wide variety of helpful values here that are worth looking further into. I'll also want to allow the user to select specific columns without having to guess exactly how they're formatted. 
+
+```{r Endpoint2}
+endpoint2 <- "berry/"
+
+# In order to make things a little easier for the user, I've included a function that allows you to pick specific columns, without necessarily getting the exact name of the column.
+BerryFilter <- function(BerryOutput, ColFilter) {
+  # The idea is to run (matrix of possible values) %in% ColFilter.
+  # Then whichever columns have a TRUE value get used in select().
+  BerryLegalValues <- matrix(c("id", NA, NA,
+                          "firmness", "firm", NA,
+                          "flavor", "flavors", NA,
+                          "potency", NA, NA,
+                          "growthtime", "growth", "time",
+                          "item", "items", NA,
+                          "maxharvest", "harvest", NA,
+                          "name", "names", NA,
+                          "naturalgiftpower", "giftpower", "power",
+                          "naturalgifttype", "gifttype", "type",
+                          "size", "sizes", NA,
+                          "smoothness", "smooth", NA,
+                          "soildryness", "soil", "dryness"), nrow = 3)
+  MatchLegalValues <- matrix(BerryLegalValues %in% tolower(str_replace_all(ColFilter,"[^[:alnum:]]",
+                             "")), nrow = 3)
+  SelectedCols <- numeric()
+  for(i in 1:ncol(BerryLegalValues)) {
+    if (any(MatchLegalValues[,i])) {
+      SelectedCols <- c(SelectedCols, i)
+    }
+  }
+  return(select(BerryOutput, all_of(SelectedCols)))
+}
+
+# As for the function that will call from this endpoint:
+Berry <- function(id = NULL, limit = NULL, offset = NULL, alldata = FALSE, colfilter = NULL) {
+  # As before, check for the ID first. If it's not there, it'll be a limit/offset.
+  if (is.null(id) == FALSE) {
+    call <- paste0(base, endpoint2, id)
+    if(!is.null(limit) | !is.null(offset)) {
+      warning("Combined ID with limit/offset. Ignoring the latter.")
+    }
+    Data <- fromJSON(call)
+    
+    # I do some mildly funky stuff here to get R to cooperate and get the list returned from fromJSON
+    # into an orderly data frame.
+    BerryTibble <- read_csv("\n", col_names = names(Data))
+    BerryTibble[1:5,] <- NA
+    for (i in 1:ncol(BerryTibble)){
+      BerryTibble[,i] <- Data[[i]][1]
+    }
+    CompleteData <- BerryTibble %>% mutate(potency = Data[2]$flavors$potency) %>% relocate(potency,
+                                   .before = growth_time) %>% relocate(id, .before = firmness)
+  }
+  # If colfilter isn't NULL, CompleteData will be filtered out into RefinedData towards the end.
+  # Things do get more complicated if we have limit+offset and alldata = TRUE.
+  # In that case, I'll just run a for() loop, since this isn't an incredibly time intensive task,
+  # to get each individual berry in order.
+  else {
+    call <- paste0(base, endpoint2, "?limit=", limit, "&offset=", offset)
+    Data <- fromJSON(call)
+    if (alldata == FALSE) {
+      FinalData <- Data$results
+    }
+    else {
+      Data <- map(Data$results$url, fromJSON)
+      CompleteData <- NULL
+
+      for(i in 1:length(Data)) {
+        TempTibble <- read_csv("\n", col_names = names(Data[[i]]))
+        TempTibble[1:5,] <- NA
+        for (j in 1:ncol(TempTibble)){
+          TempTibble[,j] <- Data[[i]][[names(Data[[i]])[j]]][1]
+        }
+        TempTibble <- TempTibble %>% mutate(potency = Data[[i]]$flavors$potency) %>%
+          relocate(potency, .before = growth_time) %>% relocate(id, .before = firmness)
+        CompleteData <- CompleteData %>% bind_rows(TempTibble)
+      }
+    }
+  }
+  if (is.null(colfilter)) {
+    FinalData <- CompleteData
+  } else {
+    FinalData <- BerryFilter(CompleteData, colfilter)
+  }
+  
+  return(FinalData)
+}
+```
+
+With the more consequential second endpoint functions created, I can now pull all of the Berry information and filter it by the columns that I may be interested in for my statistical analysis.
+
+```{r EndPoint2Data, eval = FALSE}
+AllBerries <- Berry(limit = 64, alldata = TRUE, colfilter = c("id", "growthtime", "maxharvest", "name", "naturalgiftpower", "naturalgifttype", "size", "smoothness", "soildryness"))
+```
 
