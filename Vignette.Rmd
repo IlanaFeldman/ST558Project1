@@ -135,6 +135,7 @@ Berry <- function(id = NULL, limit = NULL, offset = NULL, alldata = FALSE, colfi
                                    .before = growth_time) %>% relocate(id, .before = firmness)
   }
   # If colfilter isn't NULL, CompleteData will be filtered out into RefinedData towards the end.
+  
   # Things do get more complicated if we have limit+offset and alldata = TRUE.
   # In that case, I'll just run a for() loop, since this isn't an incredibly time intensive task,
   # to get each individual berry in order.
@@ -142,14 +143,14 @@ Berry <- function(id = NULL, limit = NULL, offset = NULL, alldata = FALSE, colfi
     call <- paste0(base, endpoint2, "?limit=", limit, "&offset=", offset)
     Data <- fromJSON(call)
     if (alldata == FALSE) {
-      FinalData <- Data$results
+      RefinedData <- Data$results
     }
     else {
       Data <- map(Data$results$url, fromJSON)
       CompleteData <- NULL
 
       for(i in 1:length(Data)) {
-        TempTibble <- read_csv("\n", col_names = names(Data[[i]]))
+        TempTibble <- read_csv("\n", col_names = names(Data[[i]]), show_col_types = FALSE)
         TempTibble[1:5,] <- NA
         for (j in 1:ncol(TempTibble)){
           TempTibble[,j] <- Data[[i]][[names(Data[[i]])[j]]][1]
@@ -161,18 +162,91 @@ Berry <- function(id = NULL, limit = NULL, offset = NULL, alldata = FALSE, colfi
     }
   }
   if (is.null(colfilter)) {
-    FinalData <- CompleteData
+    RefinedData <- CompleteData
   } else {
-    FinalData <- BerryFilter(CompleteData, colfilter)
+    RefinedData <- BerryFilter(CompleteData, colfilter)
   }
   
-  return(FinalData)
+  return(RefinedData)
 }
 ```
 
-With the more consequential second endpoint functions created, I can now pull all of the Berry information and filter it by the columns that I may be interested in for my statistical analysis.
+With the more consequential second endpoint functions created, I can now pull all of the Berry information and filter it by the columns that I may be interested in for my statistical analysis. Since I'm removing the flavor columns, I can use `dplyr::distinct` to reduce this down from 320 to 64 rows.
 
 ```{r EndPoint2Data, eval = FALSE}
-AllBerries <- Berry(limit = 64, alldata = TRUE, colfilter = c("id", "growthtime", "maxharvest", "name", "naturalgiftpower", "naturalgifttype", "size", "smoothness", "soildryness"))
+AllBerries <- distinct(Berry(limit = 64, alldata = TRUE, colfilter = c("id", "growthtime", "maxharvest", "item", "naturalgiftpower", "naturalgifttype", "size", "smoothness", "soildryness")))
 ```
 
+The third endpoint will be the item categories. As before, I'll include a function/input that allows you to filter out specific columns
+
+```{r Endpoint3}
+endpoint3 <- "item-category/"
+
+ItemCatFilter <- function(ItemCatOutput, ColFilter) {
+  # This function is essentially the same as for filtering Berry, but with different values.
+    ItemCatLegalValues <- matrix(c("id", NA, NA,
+                          "item", "items", NA,
+                          "name", NA, NA,
+                          "names", NA, NA,
+                          "pocket", "pockettype", "type",
+                          "url", "itemurl", "itemsurl"), nrow = 3)
+  MatchLegalValues <- matrix(ItemCatLegalValues %in% tolower(str_replace_all(ColFilter,"[^[:alnum:]]",
+                             "")), nrow = 3)
+  SelectedCols <- numeric()
+  for(i in 1:ncol(ItemCatLegalValues)) {
+    if (any(MatchLegalValues[,i])) {
+      SelectedCols <- c(SelectedCols, i)
+    }
+  }
+  return(select(ItemCatOutput, all_of(SelectedCols)))
+
+}
+
+ItemCategory <- function(id = NULL, limit = NULL, offset = NULL, alldata = FALSE, colfilter = NULL) {
+  if (is.null(id) == FALSE) {
+    call <- paste0(base, endpoint3, id)
+    if(!is.null(limit) | !is.null(offset)) {
+      warning("Combined ID with limit/offset. Ignoring the latter.")
+    }
+    Data <- fromJSON(call)
+    CompleteData <- cbind("pocket$name" = Data$pocket$name, Data$items)
+  }
+  
+  else {
+    call <- paste0(base, endpoint3, "?limit=", limit, "&offset=", offset)
+    Data <- fromJSON(call)
+    if (alldata == FALSE) {
+      RefinedData <- Data$results
+    }
+    else {
+      Data <- map(Data$results$url, fromJSON)
+      CompleteData <- NULL
+
+      for(i in 1:length(Data)) {
+        TempTibble <- read_csv("\n", col_names = names(Data[[i]]), show_col_types = FALSE)
+        TempTibble[1:nrow(Data[[i]][[names(Data[[i]])[2]]]),] <- NA
+        # This is modified from the Berry function because the number of items in 
+        # this category changes, whereas it was constant in Berry.
+        
+        for (j in 1:ncol(TempTibble)){
+          TempTibble[,j] <- Data[[i]][[names(Data[[i]])[j]]][1]
+        }
+        # This unfortunately leaves out items$url, which can actually be helpful, so I'll add it in.
+        TempTibble <- TempTibble %>% add_column(Data[[i]][[names(Data[[i]])[2]]][2])
+        CompleteData <- CompleteData %>% bind_rows(TempTibble)
+      }
+    }
+    
+    if (is.null(colfilter)) {
+      RefinedData <- CompleteData
+    } else {
+      RefinedData <- ItemCatFilter(CompleteData, colfilter)
+    }
+  }
+
+  return(RefinedData)
+
+}
+```
+
+Something I can do with Berry + Item Category is compare the size / smoothness / soil dryness across the berries that are baking only, effort drop, in a pinch, medicine, other, picky healing, and type protection.
