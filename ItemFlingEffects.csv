@@ -1,0 +1,32 @@
+effect_entries,id,items,name
+Badly poisons the target.,1,toxic-orb,badly-poison
+Burns the target.,2,flame-orb,burn
+Immediately activates the berry's effect on the target.,3,cheri-berry,berry-effect
+Immediately activates the berry's effect on the target.,3,chesto-berry,berry-effect
+Immediately activates the berry's effect on the target.,3,pecha-berry,berry-effect
+Immediately activates the berry's effect on the target.,3,rawst-berry,berry-effect
+Immediately activates the berry's effect on the target.,3,aspear-berry,berry-effect
+Immediately activates the berry's effect on the target.,3,leppa-berry,berry-effect
+Immediately activates the berry's effect on the target.,3,oran-berry,berry-effect
+Immediately activates the berry's effect on the target.,3,persim-berry,berry-effect
+Immediately activates the berry's effect on the target.,3,lum-berry,berry-effect
+Immediately activates the berry's effect on the target.,3,sitrus-berry,berry-effect
+Immediately activates the berry's effect on the target.,3,figy-berry,berry-effect
+Immediately activates the berry's effect on the target.,3,wiki-berry,berry-effect
+Immediately activates the berry's effect on the target.,3,mago-berry,berry-effect
+Immediately activates the berry's effect on the target.,3,aguav-berry,berry-effect
+Immediately activates the berry's effect on the target.,3,iapapa-berry,berry-effect
+Immediately activates the berry's effect on the target.,3,liechi-berry,berry-effect
+Immediately activates the berry's effect on the target.,3,ganlon-berry,berry-effect
+Immediately activates the berry's effect on the target.,3,salac-berry,berry-effect
+Immediately activates the berry's effect on the target.,3,petaya-berry,berry-effect
+Immediately activates the berry's effect on the target.,3,apicot-berry,berry-effect
+Immediately activates the berry's effect on the target.,3,lansat-berry,berry-effect
+Immediately activates the berry's effect on the target.,3,starf-berry,berry-effect
+Immediately activates the berry's effect on the target.,3,micle-berry,berry-effect
+Immediately activates the herb's effect on the target.,4,white-herb,herb-effect
+Immediately activates the herb's effect on the target.,4,mental-herb,herb-effect
+Paralyzes the target.,5,light-ball,paralyze
+Poisons the target.,6,poison-barb,poison
+Target will flinch if it has not yet gone this turn.,7,kings-rock,flinch
+Target will flinch if it has not yet gone this turn.,7,razor-fang,flinch

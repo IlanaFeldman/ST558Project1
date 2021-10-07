@@ -1,0 +1,612 @@
+descriptions,id,items,name
+Has a count in the bag,1,master-ball,countable
+Has a count in the bag,1,ultra-ball,countable
+Has a count in the bag,1,great-ball,countable
+Has a count in the bag,1,poke-ball,countable
+Has a count in the bag,1,safari-ball,countable
+Has a count in the bag,1,net-ball,countable
+Has a count in the bag,1,dive-ball,countable
+Has a count in the bag,1,nest-ball,countable
+Has a count in the bag,1,repeat-ball,countable
+Has a count in the bag,1,timer-ball,countable
+Has a count in the bag,1,luxury-ball,countable
+Has a count in the bag,1,premier-ball,countable
+Has a count in the bag,1,dusk-ball,countable
+Has a count in the bag,1,heal-ball,countable
+Has a count in the bag,1,quick-ball,countable
+Has a count in the bag,1,cherish-ball,countable
+Has a count in the bag,1,potion,countable
+Has a count in the bag,1,antidote,countable
+Has a count in the bag,1,burn-heal,countable
+Has a count in the bag,1,ice-heal,countable
+Has a count in the bag,1,awakening,countable
+Has a count in the bag,1,paralyze-heal,countable
+Has a count in the bag,1,full-restore,countable
+Has a count in the bag,1,max-potion,countable
+Has a count in the bag,1,hyper-potion,countable
+Has a count in the bag,1,super-potion,countable
+Has a count in the bag,1,full-heal,countable
+Has a count in the bag,1,revive,countable
+Has a count in the bag,1,max-revive,countable
+Has a count in the bag,1,fresh-water,countable
+Has a count in the bag,1,soda-pop,countable
+Has a count in the bag,1,lemonade,countable
+Has a count in the bag,1,moomoo-milk,countable
+Has a count in the bag,1,energy-powder,countable
+Has a count in the bag,1,energy-root,countable
+Has a count in the bag,1,heal-powder,countable
+Has a count in the bag,1,revival-herb,countable
+Has a count in the bag,1,ether,countable
+Has a count in the bag,1,max-ether,countable
+Has a count in the bag,1,elixir,countable
+Has a count in the bag,1,max-elixir,countable
+Has a count in the bag,1,lava-cookie,countable
+Has a count in the bag,1,berry-juice,countable
+Has a count in the bag,1,sacred-ash,countable
+Has a count in the bag,1,hp-up,countable
+Has a count in the bag,1,protein,countable
+Has a count in the bag,1,iron,countable
+Has a count in the bag,1,carbos,countable
+Has a count in the bag,1,calcium,countable
+Has a count in the bag,1,rare-candy,countable
+Has a count in the bag,1,pp-up,countable
+Has a count in the bag,1,zinc,countable
+Has a count in the bag,1,pp-max,countable
+Has a count in the bag,1,old-gateau,countable
+Has a count in the bag,1,guard-spec,countable
+Has a count in the bag,1,dire-hit,countable
+Has a count in the bag,1,x-attack,countable
+Has a count in the bag,1,x-defense,countable
+Has a count in the bag,1,x-speed,countable
+Has a count in the bag,1,x-accuracy,countable
+Has a count in the bag,1,x-sp-atk,countable
+Has a count in the bag,1,x-sp-def,countable
+Has a count in the bag,1,poke-doll,countable
+Has a count in the bag,1,fluffy-tail,countable
+Has a count in the bag,1,blue-flute,countable
+Has a count in the bag,1,yellow-flute,countable
+Has a count in the bag,1,red-flute,countable
+Has a count in the bag,1,black-flute,countable
+Has a count in the bag,1,white-flute,countable
+Has a count in the bag,1,shoal-salt,countable
+Has a count in the bag,1,shoal-shell,countable
+Consumed when used,2,master-ball,consumable
+Consumed when used,2,ultra-ball,consumable
+Consumed when used,2,great-ball,consumable
+Consumed when used,2,poke-ball,consumable
+Consumed when used,2,safari-ball,consumable
+Consumed when used,2,net-ball,consumable
+Consumed when used,2,dive-ball,consumable
+Consumed when used,2,nest-ball,consumable
+Consumed when used,2,repeat-ball,consumable
+Consumed when used,2,timer-ball,consumable
+Consumed when used,2,luxury-ball,consumable
+Consumed when used,2,premier-ball,consumable
+Consumed when used,2,dusk-ball,consumable
+Consumed when used,2,heal-ball,consumable
+Consumed when used,2,quick-ball,consumable
+Consumed when used,2,cherish-ball,consumable
+Consumed when used,2,potion,consumable
+Consumed when used,2,antidote,consumable
+Consumed when used,2,burn-heal,consumable
+Consumed when used,2,ice-heal,consumable
+Consumed when used,2,awakening,consumable
+Consumed when used,2,paralyze-heal,consumable
+Consumed when used,2,full-restore,consumable
+Consumed when used,2,max-potion,consumable
+Consumed when used,2,hyper-potion,consumable
+Consumed when used,2,super-potion,consumable
+Consumed when used,2,full-heal,consumable
+Consumed when used,2,revive,consumable
+Consumed when used,2,max-revive,consumable
+Consumed when used,2,fresh-water,consumable
+Consumed when used,2,soda-pop,consumable
+Consumed when used,2,lemonade,consumable
+Consumed when used,2,moomoo-milk,consumable
+Consumed when used,2,energy-powder,consumable
+Consumed when used,2,energy-root,consumable
+Consumed when used,2,heal-powder,consumable
+Consumed when used,2,revival-herb,consumable
+Consumed when used,2,ether,consumable
+Consumed when used,2,max-ether,consumable
+Consumed when used,2,elixir,consumable
+Consumed when used,2,max-elixir,consumable
+Consumed when used,2,lava-cookie,consumable
+Consumed when used,2,berry-juice,consumable
+Consumed when used,2,sacred-ash,consumable
+Consumed when used,2,hp-up,consumable
+Consumed when used,2,protein,consumable
+Consumed when used,2,iron,consumable
+Consumed when used,2,carbos,consumable
+Consumed when used,2,calcium,consumable
+Consumed when used,2,rare-candy,consumable
+Consumed when used,2,pp-up,consumable
+Consumed when used,2,zinc,consumable
+Consumed when used,2,pp-max,consumable
+Consumed when used,2,old-gateau,consumable
+Consumed when used,2,guard-spec,consumable
+Consumed when used,2,dire-hit,consumable
+Consumed when used,2,x-attack,consumable
+Consumed when used,2,x-defense,consumable
+Consumed when used,2,x-speed,consumable
+Consumed when used,2,x-accuracy,consumable
+Consumed when used,2,x-sp-atk,consumable
+Consumed when used,2,x-sp-def,consumable
+Consumed when used,2,poke-doll,consumable
+Consumed when used,2,fluffy-tail,consumable
+Consumed when used,2,blue-flute,consumable
+Consumed when used,2,yellow-flute,consumable
+Consumed when used,2,red-flute,consumable
+Consumed when used,2,black-flute,consumable
+Consumed when used,2,white-flute,consumable
+Usable outside battle,3,potion,usable-overworld
+Usable outside battle,3,antidote,usable-overworld
+Usable outside battle,3,burn-heal,usable-overworld
+Usable outside battle,3,ice-heal,usable-overworld
+Usable outside battle,3,awakening,usable-overworld
+Usable outside battle,3,paralyze-heal,usable-overworld
+Usable outside battle,3,full-restore,usable-overworld
+Usable outside battle,3,max-potion,usable-overworld
+Usable outside battle,3,hyper-potion,usable-overworld
+Usable outside battle,3,super-potion,usable-overworld
+Usable outside battle,3,full-heal,usable-overworld
+Usable outside battle,3,revive,usable-overworld
+Usable outside battle,3,max-revive,usable-overworld
+Usable outside battle,3,fresh-water,usable-overworld
+Usable outside battle,3,soda-pop,usable-overworld
+Usable outside battle,3,lemonade,usable-overworld
+Usable outside battle,3,moomoo-milk,usable-overworld
+Usable outside battle,3,energy-powder,usable-overworld
+Usable outside battle,3,energy-root,usable-overworld
+Usable outside battle,3,heal-powder,usable-overworld
+Usable outside battle,3,revival-herb,usable-overworld
+Usable outside battle,3,ether,usable-overworld
+Usable outside battle,3,max-ether,usable-overworld
+Usable outside battle,3,elixir,usable-overworld
+Usable outside battle,3,max-elixir,usable-overworld
+Usable outside battle,3,lava-cookie,usable-overworld
+Usable outside battle,3,berry-juice,usable-overworld
+Usable outside battle,3,sacred-ash,usable-overworld
+Usable outside battle,3,hp-up,usable-overworld
+Usable outside battle,3,protein,usable-overworld
+Usable outside battle,3,iron,usable-overworld
+Usable outside battle,3,carbos,usable-overworld
+Usable outside battle,3,calcium,usable-overworld
+Usable outside battle,3,rare-candy,usable-overworld
+Usable outside battle,3,pp-up,usable-overworld
+Usable outside battle,3,zinc,usable-overworld
+Usable outside battle,3,pp-max,usable-overworld
+Usable outside battle,3,old-gateau,usable-overworld
+Usable outside battle,3,blue-flute,usable-overworld
+Usable outside battle,3,black-flute,usable-overworld
+Usable outside battle,3,white-flute,usable-overworld
+Usable in battle,4,master-ball,usable-in-battle
+Usable in battle,4,ultra-ball,usable-in-battle
+Usable in battle,4,great-ball,usable-in-battle
+Usable in battle,4,poke-ball,usable-in-battle
+Usable in battle,4,safari-ball,usable-in-battle
+Usable in battle,4,net-ball,usable-in-battle
+Usable in battle,4,dive-ball,usable-in-battle
+Usable in battle,4,nest-ball,usable-in-battle
+Usable in battle,4,repeat-ball,usable-in-battle
+Usable in battle,4,timer-ball,usable-in-battle
+Usable in battle,4,luxury-ball,usable-in-battle
+Usable in battle,4,premier-ball,usable-in-battle
+Usable in battle,4,dusk-ball,usable-in-battle
+Usable in battle,4,heal-ball,usable-in-battle
+Usable in battle,4,quick-ball,usable-in-battle
+Usable in battle,4,cherish-ball,usable-in-battle
+Usable in battle,4,potion,usable-in-battle
+Usable in battle,4,antidote,usable-in-battle
+Usable in battle,4,burn-heal,usable-in-battle
+Usable in battle,4,ice-heal,usable-in-battle
+Usable in battle,4,awakening,usable-in-battle
+Usable in battle,4,paralyze-heal,usable-in-battle
+Usable in battle,4,full-restore,usable-in-battle
+Usable in battle,4,max-potion,usable-in-battle
+Usable in battle,4,hyper-potion,usable-in-battle
+Usable in battle,4,super-potion,usable-in-battle
+Usable in battle,4,full-heal,usable-in-battle
+Usable in battle,4,revive,usable-in-battle
+Usable in battle,4,max-revive,usable-in-battle
+Usable in battle,4,fresh-water,usable-in-battle
+Usable in battle,4,soda-pop,usable-in-battle
+Usable in battle,4,lemonade,usable-in-battle
+Usable in battle,4,moomoo-milk,usable-in-battle
+Usable in battle,4,energy-powder,usable-in-battle
+Usable in battle,4,energy-root,usable-in-battle
+Usable in battle,4,heal-powder,usable-in-battle
+Usable in battle,4,revival-herb,usable-in-battle
+Usable in battle,4,ether,usable-in-battle
+Usable in battle,4,max-ether,usable-in-battle
+Usable in battle,4,elixir,usable-in-battle
+Usable in battle,4,max-elixir,usable-in-battle
+Usable in battle,4,lava-cookie,usable-in-battle
+Usable in battle,4,berry-juice,usable-in-battle
+Usable in battle,4,sacred-ash,usable-in-battle
+Usable in battle,4,hp-up,usable-in-battle
+Usable in battle,4,protein,usable-in-battle
+Usable in battle,4,iron,usable-in-battle
+Usable in battle,4,carbos,usable-in-battle
+Usable in battle,4,calcium,usable-in-battle
+Usable in battle,4,rare-candy,usable-in-battle
+Usable in battle,4,pp-up,usable-in-battle
+Usable in battle,4,zinc,usable-in-battle
+Usable in battle,4,pp-max,usable-in-battle
+Usable in battle,4,old-gateau,usable-in-battle
+Usable in battle,4,guard-spec,usable-in-battle
+Usable in battle,4,dire-hit,usable-in-battle
+Usable in battle,4,x-attack,usable-in-battle
+Usable in battle,4,x-defense,usable-in-battle
+Usable in battle,4,x-speed,usable-in-battle
+Usable in battle,4,x-accuracy,usable-in-battle
+Usable in battle,4,x-sp-atk,usable-in-battle
+Usable in battle,4,x-sp-def,usable-in-battle
+Usable in battle,4,poke-doll,usable-in-battle
+Usable in battle,4,fluffy-tail,usable-in-battle
+Usable in battle,4,blue-flute,usable-in-battle
+Usable in battle,4,yellow-flute,usable-in-battle
+Usable in battle,4,red-flute,usable-in-battle
+Can be held by a Pokémon,5,master-ball,holdable
+Can be held by a Pokémon,5,ultra-ball,holdable
+Can be held by a Pokémon,5,great-ball,holdable
+Can be held by a Pokémon,5,poke-ball,holdable
+Can be held by a Pokémon,5,safari-ball,holdable
+Can be held by a Pokémon,5,net-ball,holdable
+Can be held by a Pokémon,5,dive-ball,holdable
+Can be held by a Pokémon,5,nest-ball,holdable
+Can be held by a Pokémon,5,repeat-ball,holdable
+Can be held by a Pokémon,5,timer-ball,holdable
+Can be held by a Pokémon,5,luxury-ball,holdable
+Can be held by a Pokémon,5,premier-ball,holdable
+Can be held by a Pokémon,5,dusk-ball,holdable
+Can be held by a Pokémon,5,heal-ball,holdable
+Can be held by a Pokémon,5,quick-ball,holdable
+Can be held by a Pokémon,5,cherish-ball,holdable
+Can be held by a Pokémon,5,potion,holdable
+Can be held by a Pokémon,5,antidote,holdable
+Can be held by a Pokémon,5,burn-heal,holdable
+Can be held by a Pokémon,5,ice-heal,holdable
+Can be held by a Pokémon,5,awakening,holdable
+Can be held by a Pokémon,5,paralyze-heal,holdable
+Can be held by a Pokémon,5,full-restore,holdable
+Can be held by a Pokémon,5,max-potion,holdable
+Can be held by a Pokémon,5,hyper-potion,holdable
+Can be held by a Pokémon,5,super-potion,holdable
+Can be held by a Pokémon,5,full-heal,holdable
+Can be held by a Pokémon,5,revive,holdable
+Can be held by a Pokémon,5,max-revive,holdable
+Can be held by a Pokémon,5,fresh-water,holdable
+Can be held by a Pokémon,5,soda-pop,holdable
+Can be held by a Pokémon,5,lemonade,holdable
+Can be held by a Pokémon,5,moomoo-milk,holdable
+Can be held by a Pokémon,5,energy-powder,holdable
+Can be held by a Pokémon,5,energy-root,holdable
+Can be held by a Pokémon,5,heal-powder,holdable
+Can be held by a Pokémon,5,revival-herb,holdable
+Can be held by a Pokémon,5,ether,holdable
+Can be held by a Pokémon,5,max-ether,holdable
+Can be held by a Pokémon,5,elixir,holdable
+Can be held by a Pokémon,5,max-elixir,holdable
+Can be held by a Pokémon,5,lava-cookie,holdable
+Can be held by a Pokémon,5,berry-juice,holdable
+Can be held by a Pokémon,5,sacred-ash,holdable
+Can be held by a Pokémon,5,hp-up,holdable
+Can be held by a Pokémon,5,protein,holdable
+Can be held by a Pokémon,5,iron,holdable
+Can be held by a Pokémon,5,carbos,holdable
+Can be held by a Pokémon,5,calcium,holdable
+Can be held by a Pokémon,5,rare-candy,holdable
+Can be held by a Pokémon,5,pp-up,holdable
+Can be held by a Pokémon,5,zinc,holdable
+Can be held by a Pokémon,5,pp-max,holdable
+Can be held by a Pokémon,5,old-gateau,holdable
+Can be held by a Pokémon,5,guard-spec,holdable
+Can be held by a Pokémon,5,dire-hit,holdable
+Can be held by a Pokémon,5,x-attack,holdable
+Can be held by a Pokémon,5,x-defense,holdable
+Can be held by a Pokémon,5,x-speed,holdable
+Can be held by a Pokémon,5,x-accuracy,holdable
+Can be held by a Pokémon,5,x-sp-atk,holdable
+Can be held by a Pokémon,5,x-sp-def,holdable
+Can be held by a Pokémon,5,poke-doll,holdable
+Can be held by a Pokémon,5,fluffy-tail,holdable
+Can be held by a Pokémon,5,blue-flute,holdable
+Can be held by a Pokémon,5,yellow-flute,holdable
+Can be held by a Pokémon,5,red-flute,holdable
+Can be held by a Pokémon,5,black-flute,holdable
+Can be held by a Pokémon,5,white-flute,holdable
+Can be held by a Pokémon,5,adamant-orb,holdable
+Can be held by a Pokémon,5,lustrous-orb,holdable
+Can be held by a Pokémon,5,bright-powder,holdable
+Can be held by a Pokémon,5,white-herb,holdable
+Can be held by a Pokémon,5,macho-brace,holdable
+Can be held by a Pokémon,5,exp-share,holdable
+Can be held by a Pokémon,5,quick-claw,holdable
+Can be held by a Pokémon,5,soothe-bell,holdable
+Can be held by a Pokémon,5,mental-herb,holdable
+Can be held by a Pokémon,5,choice-band,holdable
+Can be held by a Pokémon,5,kings-rock,holdable
+Can be held by a Pokémon,5,silver-powder,holdable
+Can be held by a Pokémon,5,amulet-coin,holdable
+Can be held by a Pokémon,5,cleanse-tag,holdable
+Can be held by a Pokémon,5,soul-dew,holdable
+Can be held by a Pokémon,5,deep-sea-tooth,holdable
+Can be held by a Pokémon,5,deep-sea-scale,holdable
+Can be held by a Pokémon,5,smoke-ball,holdable
+Can be held by a Pokémon,5,everstone,holdable
+Can be held by a Pokémon,5,focus-band,holdable
+Can be held by a Pokémon,5,lucky-egg,holdable
+Can be held by a Pokémon,5,scope-lens,holdable
+Can be held by a Pokémon,5,metal-coat,holdable
+Can be held by a Pokémon,5,leftovers,holdable
+Can be held by a Pokémon,5,light-ball,holdable
+Can be held by a Pokémon,5,soft-sand,holdable
+Can be held by a Pokémon,5,hard-stone,holdable
+Can be held by a Pokémon,5,miracle-seed,holdable
+Can be held by a Pokémon,5,black-glasses,holdable
+Can be held by a Pokémon,5,black-belt,holdable
+Can be held by a Pokémon,5,magnet,holdable
+Can be held by a Pokémon,5,mystic-water,holdable
+Can be held by a Pokémon,5,sharp-beak,holdable
+Can be held by a Pokémon,5,poison-barb,holdable
+Can be held by a Pokémon,5,never-melt-ice,holdable
+Can be held by a Pokémon,5,spell-tag,holdable
+Can be held by a Pokémon,5,twisted-spoon,holdable
+Can be held by a Pokémon,5,charcoal,holdable
+Can be held by a Pokémon,5,dragon-fang,holdable
+Can be held by a Pokémon,5,silk-scarf,holdable
+Can be held by a Pokémon,5,shell-bell,holdable
+Can be held by a Pokémon,5,sea-incense,holdable
+Can be held by a Pokémon,5,lax-incense,holdable
+Can be held by a Pokémon,5,lucky-punch,holdable
+Can be held by a Pokémon,5,metal-powder,holdable
+Can be held by a Pokémon,5,thick-club,holdable
+Can be held by a Pokémon,5,stick,holdable
+Can be held by a Pokémon,5,wide-lens,holdable
+Can be held by a Pokémon,5,muscle-band,holdable
+Can be held by a Pokémon,5,wise-glasses,holdable
+Can be held by a Pokémon,5,expert-belt,holdable
+Can be held by a Pokémon,5,light-clay,holdable
+Can be held by a Pokémon,5,life-orb,holdable
+Can be held by a Pokémon,5,power-herb,holdable
+Can be held by a Pokémon,5,toxic-orb,holdable
+Can be held by a Pokémon,5,flame-orb,holdable
+Can be held by a Pokémon,5,quick-powder,holdable
+Can be held by a Pokémon,5,focus-sash,holdable
+Can be held by a Pokémon,5,zoom-lens,holdable
+Can be held by a Pokémon,5,metronome,holdable
+Can be held by a Pokémon,5,iron-ball,holdable
+Can be held by a Pokémon,5,lagging-tail,holdable
+Can be held by a Pokémon,5,destiny-knot,holdable
+Can be held by a Pokémon,5,black-sludge,holdable
+Can be held by a Pokémon,5,icy-rock,holdable
+Can be held by a Pokémon,5,smooth-rock,holdable
+Can be held by a Pokémon,5,heat-rock,holdable
+Can be held by a Pokémon,5,damp-rock,holdable
+Can be held by a Pokémon,5,grip-claw,holdable
+Can be held by a Pokémon,5,choice-scarf,holdable
+Can be held by a Pokémon,5,sticky-barb,holdable
+Can be held by a Pokémon,5,power-bracer,holdable
+Can be held by a Pokémon,5,power-belt,holdable
+Can be held by a Pokémon,5,power-lens,holdable
+Can be held by a Pokémon,5,power-band,holdable
+Can be held by a Pokémon,5,power-anklet,holdable
+Can be held by a Pokémon,5,power-weight,holdable
+Can be held by a Pokémon,5,shed-shell,holdable
+Can be held by a Pokémon,5,big-root,holdable
+Can be held by a Pokémon,5,choice-specs,holdable
+Can be held by a Pokémon,5,flame-plate,holdable
+Can be held by a Pokémon,5,splash-plate,holdable
+Can be held by a Pokémon,5,zap-plate,holdable
+Can be held by a Pokémon,5,meadow-plate,holdable
+Can be held by a Pokémon,5,icicle-plate,holdable
+Can be held by a Pokémon,5,fist-plate,holdable
+Can be held by a Pokémon,5,toxic-plate,holdable
+Can be held by a Pokémon,5,earth-plate,holdable
+Can be held by a Pokémon,5,sky-plate,holdable
+Can be held by a Pokémon,5,mind-plate,holdable
+Can be held by a Pokémon,5,insect-plate,holdable
+Can be held by a Pokémon,5,stone-plate,holdable
+Can be held by a Pokémon,5,spooky-plate,holdable
+Can be held by a Pokémon,5,draco-plate,holdable
+Can be held by a Pokémon,5,dread-plate,holdable
+Can be held by a Pokémon,5,iron-plate,holdable
+Can be held by a Pokémon,5,odd-incense,holdable
+Can be held by a Pokémon,5,rock-incense,holdable
+Can be held by a Pokémon,5,full-incense,holdable
+Can be held by a Pokémon,5,wave-incense,holdable
+Can be held by a Pokémon,5,rose-incense,holdable
+Can be held by a Pokémon,5,luck-incense,holdable
+Can be held by a Pokémon,5,pure-incense,holdable
+Can be held by a Pokémon,5,razor-claw,holdable
+Can be held by a Pokémon,5,razor-fang,holdable
+Usable by a Pokémon when held,7,cheri-berry,holdable-active
+Usable by a Pokémon when held,7,chesto-berry,holdable-active
+Usable by a Pokémon when held,7,pecha-berry,holdable-active
+Usable by a Pokémon when held,7,rawst-berry,holdable-active
+Usable by a Pokémon when held,7,aspear-berry,holdable-active
+Usable by a Pokémon when held,7,leppa-berry,holdable-active
+Usable by a Pokémon when held,7,oran-berry,holdable-active
+Usable by a Pokémon when held,7,persim-berry,holdable-active
+Usable by a Pokémon when held,7,lum-berry,holdable-active
+Usable by a Pokémon when held,7,sitrus-berry,holdable-active
+Usable by a Pokémon when held,7,figy-berry,holdable-active
+Usable by a Pokémon when held,7,wiki-berry,holdable-active
+Usable by a Pokémon when held,7,mago-berry,holdable-active
+Usable by a Pokémon when held,7,aguav-berry,holdable-active
+Usable by a Pokémon when held,7,iapapa-berry,holdable-active
+Usable by a Pokémon when held,7,occa-berry,holdable-active
+Usable by a Pokémon when held,7,passho-berry,holdable-active
+Usable by a Pokémon when held,7,wacan-berry,holdable-active
+Usable by a Pokémon when held,7,rindo-berry,holdable-active
+Usable by a Pokémon when held,7,yache-berry,holdable-active
+Usable by a Pokémon when held,7,chople-berry,holdable-active
+Usable by a Pokémon when held,7,kebia-berry,holdable-active
+Usable by a Pokémon when held,7,shuca-berry,holdable-active
+Usable by a Pokémon when held,7,coba-berry,holdable-active
+Usable by a Pokémon when held,7,payapa-berry,holdable-active
+Usable by a Pokémon when held,7,tanga-berry,holdable-active
+Usable by a Pokémon when held,7,charti-berry,holdable-active
+Usable by a Pokémon when held,7,kasib-berry,holdable-active
+Usable by a Pokémon when held,7,haban-berry,holdable-active
+Usable by a Pokémon when held,7,colbur-berry,holdable-active
+Usable by a Pokémon when held,7,babiri-berry,holdable-active
+Usable by a Pokémon when held,7,chilan-berry,holdable-active
+Usable by a Pokémon when held,7,liechi-berry,holdable-active
+Usable by a Pokémon when held,7,ganlon-berry,holdable-active
+Usable by a Pokémon when held,7,salac-berry,holdable-active
+Usable by a Pokémon when held,7,petaya-berry,holdable-active
+Usable by a Pokémon when held,7,apicot-berry,holdable-active
+Usable by a Pokémon when held,7,lansat-berry,holdable-active
+Usable by a Pokémon when held,7,starf-berry,holdable-active
+Usable by a Pokémon when held,7,enigma-berry,holdable-active
+Usable by a Pokémon when held,7,micle-berry,holdable-active
+Usable by a Pokémon when held,7,custap-berry,holdable-active
+Usable by a Pokémon when held,7,jaboca-berry,holdable-active
+Usable by a Pokémon when held,7,rowap-berry,holdable-active
+Usable by a Pokémon when held,7,bright-powder,holdable-active
+Usable by a Pokémon when held,7,white-herb,holdable-active
+Usable by a Pokémon when held,7,macho-brace,holdable-active
+Usable by a Pokémon when held,7,exp-share,holdable-active
+Usable by a Pokémon when held,7,quick-claw,holdable-active
+Usable by a Pokémon when held,7,soothe-bell,holdable-active
+Usable by a Pokémon when held,7,mental-herb,holdable-active
+Usable by a Pokémon when held,7,choice-band,holdable-active
+Usable by a Pokémon when held,7,kings-rock,holdable-active
+Usable by a Pokémon when held,7,silver-powder,holdable-active
+Usable by a Pokémon when held,7,amulet-coin,holdable-active
+Usable by a Pokémon when held,7,smoke-ball,holdable-active
+Usable by a Pokémon when held,7,everstone,holdable-active
+Usable by a Pokémon when held,7,focus-band,holdable-active
+Usable by a Pokémon when held,7,lucky-egg,holdable-active
+Usable by a Pokémon when held,7,scope-lens,holdable-active
+Usable by a Pokémon when held,7,metal-coat,holdable-active
+Usable by a Pokémon when held,7,leftovers,holdable-active
+Usable by a Pokémon when held,7,soft-sand,holdable-active
+Usable by a Pokémon when held,7,hard-stone,holdable-active
+Usable by a Pokémon when held,7,miracle-seed,holdable-active
+Usable by a Pokémon when held,7,black-glasses,holdable-active
+Usable by a Pokémon when held,7,black-belt,holdable-active
+Usable by a Pokémon when held,7,magnet,holdable-active
+Usable by a Pokémon when held,7,mystic-water,holdable-active
+Usable by a Pokémon when held,7,sharp-beak,holdable-active
+Usable by a Pokémon when held,7,poison-barb,holdable-active
+Usable by a Pokémon when held,7,never-melt-ice,holdable-active
+Usable by a Pokémon when held,7,spell-tag,holdable-active
+Usable by a Pokémon when held,7,twisted-spoon,holdable-active
+Usable by a Pokémon when held,7,charcoal,holdable-active
+Usable by a Pokémon when held,7,dragon-fang,holdable-active
+Usable by a Pokémon when held,7,silk-scarf,holdable-active
+Usable by a Pokémon when held,7,shell-bell,holdable-active
+Usable by a Pokémon when held,7,sea-incense,holdable-active
+Usable by a Pokémon when held,7,lax-incense,holdable-active
+Usable by a Pokémon when held,7,red-scarf,holdable-active
+Usable by a Pokémon when held,7,blue-scarf,holdable-active
+Usable by a Pokémon when held,7,pink-scarf,holdable-active
+Usable by a Pokémon when held,7,green-scarf,holdable-active
+Usable by a Pokémon when held,7,yellow-scarf,holdable-active
+Usable by a Pokémon when held,7,wide-lens,holdable-active
+Usable by a Pokémon when held,7,muscle-band,holdable-active
+Usable by a Pokémon when held,7,wise-glasses,holdable-active
+Usable by a Pokémon when held,7,expert-belt,holdable-active
+Usable by a Pokémon when held,7,light-clay,holdable-active
+Usable by a Pokémon when held,7,life-orb,holdable-active
+Usable by a Pokémon when held,7,power-herb,holdable-active
+Usable by a Pokémon when held,7,toxic-orb,holdable-active
+Usable by a Pokémon when held,7,flame-orb,holdable-active
+Usable by a Pokémon when held,7,focus-sash,holdable-active
+Usable by a Pokémon when held,7,zoom-lens,holdable-active
+Usable by a Pokémon when held,7,metronome,holdable-active
+Usable by a Pokémon when held,7,iron-ball,holdable-active
+Usable by a Pokémon when held,7,lagging-tail,holdable-active
+Usable by a Pokémon when held,7,destiny-knot,holdable-active
+Usable by a Pokémon when held,7,black-sludge,holdable-active
+Usable by a Pokémon when held,7,icy-rock,holdable-active
+Usable by a Pokémon when held,7,smooth-rock,holdable-active
+Usable by a Pokémon when held,7,heat-rock,holdable-active
+Usable by a Pokémon when held,7,damp-rock,holdable-active
+Usable by a Pokémon when held,7,grip-claw,holdable-active
+Usable by a Pokémon when held,7,choice-scarf,holdable-active
+Usable by a Pokémon when held,7,sticky-barb,holdable-active
+Usable by a Pokémon when held,7,power-bracer,holdable-active
+Usable by a Pokémon when held,7,power-belt,holdable-active
+Usable by a Pokémon when held,7,power-lens,holdable-active
+Usable by a Pokémon when held,7,power-band,holdable-active
+Usable by a Pokémon when held,7,power-anklet,holdable-active
+Usable by a Pokémon when held,7,power-weight,holdable-active
+Usable by a Pokémon when held,7,shed-shell,holdable-active
+Usable by a Pokémon when held,7,big-root,holdable-active
+Usable by a Pokémon when held,7,choice-specs,holdable-active
+Usable by a Pokémon when held,7,flame-plate,holdable-active
+Usable by a Pokémon when held,7,splash-plate,holdable-active
+Usable by a Pokémon when held,7,zap-plate,holdable-active
+Usable by a Pokémon when held,7,meadow-plate,holdable-active
+Usable by a Pokémon when held,7,icicle-plate,holdable-active
+Usable by a Pokémon when held,7,fist-plate,holdable-active
+Usable by a Pokémon when held,7,toxic-plate,holdable-active
+Usable by a Pokémon when held,7,earth-plate,holdable-active
+Usable by a Pokémon when held,7,sky-plate,holdable-active
+Usable by a Pokémon when held,7,mind-plate,holdable-active
+Usable by a Pokémon when held,7,insect-plate,holdable-active
+Usable by a Pokémon when held,7,stone-plate,holdable-active
+Usable by a Pokémon when held,7,spooky-plate,holdable-active
+Usable by a Pokémon when held,7,draco-plate,holdable-active
+Usable by a Pokémon when held,7,dread-plate,holdable-active
+Usable by a Pokémon when held,7,iron-plate,holdable-active
+Usable by a Pokémon when held,7,odd-incense,holdable-active
+Usable by a Pokémon when held,7,rock-incense,holdable-active
+Usable by a Pokémon when held,7,full-incense,holdable-active
+Usable by a Pokémon when held,7,wave-incense,holdable-active
+Usable by a Pokémon when held,7,rose-incense,holdable-active
+Usable by a Pokémon when held,7,luck-incense,holdable-active
+Usable by a Pokémon when held,7,razor-claw,holdable-active
+Usable by a Pokémon when held,7,razor-fang,holdable-active
+Appears in Sinnoh Underground,8,revive,underground
+Appears in Sinnoh Underground,8,max-revive,underground
+Appears in Sinnoh Underground,8,red-shard,underground
+Appears in Sinnoh Underground,8,blue-shard,underground
+Appears in Sinnoh Underground,8,yellow-shard,underground
+Appears in Sinnoh Underground,8,green-shard,underground
+Appears in Sinnoh Underground,8,sun-stone,underground
+Appears in Sinnoh Underground,8,moon-stone,underground
+Appears in Sinnoh Underground,8,fire-stone,underground
+Appears in Sinnoh Underground,8,thunder-stone,underground
+Appears in Sinnoh Underground,8,water-stone,underground
+Appears in Sinnoh Underground,8,leaf-stone,underground
+Appears in Sinnoh Underground,8,star-piece,underground
+Appears in Sinnoh Underground,8,heart-scale,underground
+Appears in Sinnoh Underground,8,root-fossil,underground
+Appears in Sinnoh Underground,8,claw-fossil,underground
+Appears in Sinnoh Underground,8,helix-fossil,underground
+Appears in Sinnoh Underground,8,dome-fossil,underground
+Appears in Sinnoh Underground,8,old-amber,underground
+Appears in Sinnoh Underground,8,armor-fossil,underground
+Appears in Sinnoh Underground,8,skull-fossil,underground
+Appears in Sinnoh Underground,8,rare-bone,underground
+Appears in Sinnoh Underground,8,oval-stone,underground
+Appears in Sinnoh Underground,8,odd-keystone,underground
+Appears in Sinnoh Underground,8,everstone,underground
+Appears in Sinnoh Underground,8,hard-stone,underground
+Appears in Sinnoh Underground,8,light-clay,underground
+Appears in Sinnoh Underground,8,iron-ball,underground
+Appears in Sinnoh Underground,8,icy-rock,underground
+Appears in Sinnoh Underground,8,smooth-rock,underground
+Appears in Sinnoh Underground,8,heat-rock,underground
+Appears in Sinnoh Underground,8,damp-rock,underground
+Appears in Sinnoh Underground,8,flame-plate,underground
+Appears in Sinnoh Underground,8,splash-plate,underground
+Appears in Sinnoh Underground,8,zap-plate,underground
+Appears in Sinnoh Underground,8,meadow-plate,underground
+Appears in Sinnoh Underground,8,icicle-plate,underground
+Appears in Sinnoh Underground,8,fist-plate,underground
+Appears in Sinnoh Underground,8,toxic-plate,underground
+Appears in Sinnoh Underground,8,earth-plate,underground
+Appears in Sinnoh Underground,8,sky-plate,underground
+Appears in Sinnoh Underground,8,mind-plate,underground
+Appears in Sinnoh Underground,8,insect-plate,underground
+Appears in Sinnoh Underground,8,stone-plate,underground
+Appears in Sinnoh Underground,8,spooky-plate,underground
+Appears in Sinnoh Underground,8,draco-plate,underground
+Appears in Sinnoh Underground,8,dread-plate,underground
+Appears in Sinnoh Underground,8,iron-plate,underground

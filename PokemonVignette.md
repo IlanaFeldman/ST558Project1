@@ -1,14 +1,14 @@
----
-title: "Vignette"
-author: "Ilana Feldman"
-date: "10/3/2021"
----
+Vignette
+================
+Ilana Feldman
+10/3/2021
 
 ## Setup
 
-Before creating all my functions, I'll keep a code chunk here that keeps track of my libraries and base value.
+Before creating all my functions, I’ll keep a code chunk here that keeps
+track of my libraries and base value.
 
-```{r setup2, message = FALSE, warning = FALSE}
+``` r
 library(httr)
 library(jsonlite)
 library(tidyverse)
@@ -16,9 +16,18 @@ library(purrr)
 base <- "https://pokeapi.co/api/v2/"
 ```
 
-In general, all of my endpoint functions build their URLs in the same way, so, as a good programming practice, it's appropriate to simply have it call a function instead of tracking down and pasting the same spread-out lines of code each time. Something that's worth noting is that if you have "encounter-method/?limit=5&offset=3/2", this just ignores the 2 at the end, and if you have "encounter-method/2?limit=5&offset=3", this just ignores everything after the 2, since it has a specific ID. I could take this either way, but I should probably prioritize the ID. I'll also return a warning if you try to put an ID + limit or ID + offset.
+In general, all of my endpoint functions build their URLs in the same
+way, so, as a good programming practice, it’s appropriate to simply have
+it call a function instead of tracking down and pasting the same
+spread-out lines of code each time. Something that’s worth noting is
+that if you have “encounter-method/?limit=5\&offset=3/2”, this just
+ignores the 2 at the end, and if you have
+“encounter-method/2?limit=5\&offset=3”, this just ignores everything
+after the 2, since it has a specific ID. I could take this either way,
+but I should probably prioritize the ID. I’ll also return a warning if
+you try to put an ID + limit or ID + offset.
 
-```{r URLFunction}
+``` r
 URLtoData <- function(id = NULL, limit = NULL, offset = NULL, endpoint) {
   if (is.null(id) == FALSE) {
     call <- paste0(base, endpoint, id)
@@ -32,13 +41,19 @@ URLtoData <- function(id = NULL, limit = NULL, offset = NULL, endpoint) {
   return(Data)
 }
 ```
+
 ## Endpoint Functions
 
 ### Initial Foray
 
-I'll be starting off with the encounter methods, although this doesn't have much statistical application, just to make sure that things are working properly. I've also added an `alldata` argument, if limit/offset are used, to dig a level deeper and return the individual pieces of information on each of the entries, and a `language` argument to filter by language.
+I’ll be starting off with the encounter methods, although this doesn’t
+have much statistical application, just to make sure that things are
+working properly. I’ve also added an `alldata` argument, if limit/offset
+are used, to dig a level deeper and return the individual pieces of
+information on each of the entries, and a `language` argument to filter
+by language.
 
-```{r Endpoint1}
+``` r
 EncounterMethod <- function(id = NULL, limit = NULL, offset = NULL, alldata = FALSE, language = NULL) {
 Data <- URLtoData(id, limit, offset, endpoint = "encounter-method/")  
   if (!is.null(id)) {
@@ -81,17 +96,25 @@ Data <- URLtoData(id, limit, offset, endpoint = "encounter-method/")
 }
 ```
 
-The following is a function call that will grab every single encounter method in English and put it into a neat, orderly tibble. I have already run this and stored the data, so in general, I won't be evaluating these since they make a large number of requests to the API.
+The following is a function call that will grab every single encounter
+method in English and put it into a neat, orderly tibble. I have already
+run this and stored the data, so in general, I won’t be evaluating these
+since they make a large number of requests to the API.
 
-```{r Endpoint1Data, eval = FALSE}
+``` r
 AllEncounterMethods <- EncounterMethod(limit = 27, alldata = TRUE, language = "English")
 ```
 
 ### Gathering Berry Information
 
-Getting into the main focus of what I'll be analyzing, I'll be making functions that call various information about berries. This is where things get significantly more complicated than EncounterMethods, since there are a wide variety of helpful values here that are worth looking further into. I'll also want to allow the user to select specific columns without having to guess exactly how they're formatted. 
+Getting into the main focus of what I’ll be analyzing, I’ll be making
+functions that call various information about berries. This is where
+things get significantly more complicated than EncounterMethods, since
+there are a wide variety of helpful values here that are worth looking
+further into. I’ll also want to allow the user to select specific
+columns without having to guess exactly how they’re formatted.
 
-```{r Endpoint2}
+``` r
 BerryFlavor <- function(id = NULL, limit = NULL, offset = NULL, alldata = FALSE) {
   Data <- URLtoData(id, limit, offset, endpoint = "berry-flavor/")
   if (!is.null(id)) {
@@ -113,20 +136,27 @@ BerryFlavor <- function(id = NULL, limit = NULL, offset = NULL, alldata = FALSE)
   }
   return(RefinedData)
 }
-
 ```
 
-In case I need it, I'll be pulling information from all 6 endpoints. The ones I use will be stored in CSV files.
+In case I need it, I’ll be pulling information from all 6 endpoints. The
+ones I use will be stored in CSV files.
 
-```{r Endpoint2Data, eval = FALSE}
+``` r
 AllBerryFlavors <- BerryFlavor(limit = 5, alldata = TRUE)
 ```
 
-Moving onto some of the more complex endpoints: I wanted to examine the information on berries, which requires me to connect to the Berry endpoint, but there are other endpoints that contain more subtle information on berries as well.
+Moving onto some of the more complex endpoints: I wanted to examine the
+information on berries, which requires me to connect to the Berry
+endpoint, but there are other endpoints that contain more subtle
+information on berries as well.
 
-In order to make things a little easier for the user, I've included a function that allows you to pick specific columns, without necessarily getting the exact name of the column right. Specifically, I made it so that spaces and symbols aren't needed, and there are multiple keywords you can type in to get the desired column for many of the columns.
+In order to make things a little easier for the user, I’ve included a
+function that allows you to pick specific columns, without necessarily
+getting the exact name of the column right. Specifically, I made it so
+that spaces and symbols aren’t needed, and there are multiple keywords
+you can type in to get the desired column for many of the columns.
 
-```{r Endpoint3}
+``` r
 BerryFilter <- function(berryoutput, colfilter) {
   # The idea is to run (matrix of possible values) %in% colfilter
   # Then whichever columns have a TRUE value get used in select().
@@ -207,18 +237,27 @@ Berry <- function(id = NULL, limit = NULL, offset = NULL, alldata = FALSE, colfi
 }
 ```
 
-With the relevant berry endpoint functions created, I can now pull all of the Berry information and filter it by the columns that I may be interested in for my statistical analysis. Since I'm removing the flavor columns, I can use `dplyr::distinct` to reduce this down from 320 to 64 rows.
+With the relevant berry endpoint functions created, I can now pull all
+of the Berry information and filter it by the columns that I may be
+interested in for my statistical analysis. Since I’m removing the flavor
+columns, I can use `dplyr::distinct` to reduce this down from 320 to 64
+rows.
 
-```{r Endpoint3Data, eval = FALSE}
+``` r
 AllBerries <- distinct(Berry(limit = 64, alldata = TRUE, colfilter = c("id", "growthtime", "maxharvest", "item", "naturalgiftpower", "naturalgifttype", "size", "smoothness", "soildryness")))
 write_csv(AllBerries, "Berries.csv")
 ```
 
 ### Comparing Berries in the Context of Items
 
-The remaining endpoints will be various subsets of items, which I'll use to divide up the berries into various types for statistical analysis. As before, I'll include a function/input that allows you to filter out specific columns when appropriate. All three of these appear to filter berries into different categories in different ways, which may be interesting to examine.
+The remaining endpoints will be various subsets of items, which I’ll use
+to divide up the berries into various types for statistical analysis. As
+before, I’ll include a function/input that allows you to filter out
+specific columns when appropriate. All three of these appear to filter
+berries into different categories in different ways, which may be
+interesting to examine.
 
-```{r Endpoint4}
+``` r
 ItemCatFilter <- function(itemcatoutput, colfilter) {
   # This function is essentially the same as for filtering Berry, but with different values.
     ItemCatLegalValues <- matrix(c("id", NA, NA,
@@ -276,18 +315,29 @@ ItemCategory <- function(id = NULL, limit = NULL, offset = NULL, alldata = FALSE
 }
 ```
 
-I'm assuming that all items in the API can be found in one of the item categories. Since the information from `berry/` comes with item names that match up to the item names in the categories, I can do an inner join to get that information in one table. Then, I can compare various metrics of the berries in the context of whichever category they're in.
+I’m assuming that all items in the API can be found in one of the item
+categories. Since the information from `berry/` comes with item names
+that match up to the item names in the categories, I can do an inner
+join to get that information in one table. Then, I can compare various
+metrics of the berries in the context of whichever category they’re in.
 
-```{r Endpoint4Data, eval = FALSE}
+``` r
 AllItemCategories <- ItemCategory(limit = 45, alldata = TRUE, colfilter = c("id", "items", "url", "name", "pocket"))
 write_csv(AllItemCategories, "ItemCategories.csv")
 ```
 
-It's worth noting that doing this gets a list of all items, just grouped by category. If we wanted to, we could get a similar list without the category grouping by calling `https://pokeapi.co/api/v2/item/?limit=954`. However, this wouldn't be particularly useful without going a level deeper, which would require making 954 additional calls for a massive amount of data which is mostly uninteresting in the context of the statistical analysis I have planned. 
+It’s worth noting that doing this gets a list of all items, just grouped
+by category. If we wanted to, we could get a similar list without the
+category grouping by calling
+`https://pokeapi.co/api/v2/item/?limit=954`. However, this wouldn’t be
+particularly useful without going a level deeper, which would require
+making 954 additional calls for a massive amount of data which is mostly
+uninteresting in the context of the statistical analysis I have planned.
 
-The remaining endpoints more or less follow a similar line of attack compared to the previous ones.
+The remaining endpoints more or less follow a similar line of attack
+compared to the previous ones.
 
-```{r Endpoint5}
+``` r
 ItemAttrFilter <- function(itemattroutput, colfilter) {
     ItemAttrLegalValues <- matrix(c("desc", "descriptions", "description",
                           "id", NA, NA,
@@ -341,12 +391,12 @@ ItemAttribute <- function(id = NULL, limit = NULL, offset = NULL, alldata = FALS
 }
 ```
 
-```{r Endpoint5Data, eval = FALSE}
+``` r
 AllItemAttributes <- ItemAttribute(limit = 8, alldata = TRUE, colfilter = c("desc", "id", "items", "name"))
 write_csv(AllItemAttributes, "ItemAttributes.csv")
 ```
 
-```{r Endpoint6}
+``` r
 ItemFlingFilter <- function(itemflingoutput, colfilter) {
     ItemFlingLegalValues <- matrix(c("effectentries", "effect", "effectentry",
                           "id", NA, NA,
@@ -396,98 +446,242 @@ ItemFlingEffect <- function(id = NULL, limit = NULL, offset = NULL, alldata = FA
 }
 ```
 
-```{r Endpoint6Data, eval = FALSE}
+``` r
 AllItemFlingEffects <- ItemFlingEffect(limit = 7, alldata = TRUE)
 write_csv(AllItemFlingEffects, "ItemFlingEffects.csv")
 ```
 
 ## Exploratory Data Analysis
 
-I'll be exploring the various attributes of berries based on the item categories they fall into and how they operate as items in general. Since I'm not running the Endpoint#Data chunks while knitting this, I'll need to collect the data from the .csv sheets that I set up.
+I’ll be exploring the various attributes of berries based on the item
+categories they fall into and how they operate as items in general.
+Since I’m not running the Endpoint\#Data chunks while knitting this,
+I’ll need to collect the data from the .csv sheets that I set up.
 
-```{r RecollectData, message = FALSE, warning = FALSE}
+``` r
 AllBerries <- read_csv("Berries.csv")
 AllItemCategories <- read_csv("ItemCategories.csv")
 AllItemAttributes <- read_csv("ItemAttributes.csv")
 AllItemFlingEffects <- read_csv("ItemFlingEffects.csv")
 ```
 
+Before I start cross-analyzing the berries by item categories, however,
+approximately how are the berry sizes distributed? There can be,
+potentially, a wide variety of berry sizes, or a few, and they could be
+uniform, normal, or any other distribution.
 
-Before I start cross-analyzing the berries by item categories, however, approximately how are the berry sizes distributed? There can be, potentially, a wide variety of berry sizes, or a few, and they could be uniform, normal, or any other distribution.
-
-```{r BerrySizes}
+``` r
 gBerry1 <- ggplot(AllBerries)
 gBerry1 + geom_histogram(aes(x = size), fill = "purple", binwidth = 10) + ggtitle("Distribution of Berry Sizes")
 ```
 
-We can see that there are a fairly wide variety of sizes, and they are generally skewed to the right. It looks like Berries could be divided into different size categories. I'll divide them into "small", "medium", and "large" categories to analyze further down the line.
+![](PokemonVignette_files/figure-gfm/BerrySizes-1.png)<!-- -->
 
-```{r BerryModification}
+We can see that there are a fairly wide variety of sizes, and they are
+generally skewed to the right. It looks like Berries could be divided
+into different size categories. I’ll divide them into “small”, “medium”,
+and “large” categories to analyze further down the line.
+
+``` r
 AllBerries <- AllBerries %>% mutate(size_category = if_else(size < 100, "Small",
                                                             if_else(size < 200, "Medium", "Large")))
 ```
 
-I'm also interested in how growth time affects or is affected by other attributes of the berries. Specifically, is the berry size influenced by its growth time, and is there a relationship between the soil dryness and the growth time?
+I’m also interested in how growth time affects or is affected by other
+attributes of the berries. Specifically, is the berry size influenced by
+its growth time, and is there a relationship between the soil dryness
+and the growth time?
 
-```{r GrowthTime1}
+``` r
 gBerry1 + geom_point(aes(x = growth_time, y = size, color = size_category)) + geom_smooth(aes(x = growth_time, y = size), method = lm, col = "Green") + ggtitle("Size vs Growth Time")
 ```
 
-We can see in this growth time versus size plot that there doesn't seem to be much of a relationship between the growth time and the berry size. Even if we sectioned it off into each of the berry size categories, it doesn't look like there would be a significant relationship within those categories.
+    ## `geom_smooth()` using formula 'y ~ x'
 
-```{r GrowthTime2}
+![](PokemonVignette_files/figure-gfm/GrowthTime1-1.png)<!-- -->
+
+We can see in this growth time versus size plot that there doesn’t seem
+to be much of a relationship between the growth time and the berry size.
+Even if we sectioned it off into each of the berry size categories, it
+doesn’t look like there would be a significant relationship within those
+categories.
+
+``` r
 gBerry1 + geom_point(aes(x = soil_dryness, y = growth_time)) + geom_smooth(aes(x = soil_dryness, y = growth_time), method = lm) + ggtitle("Growth Time vs Soil Dryness")
 ```
 
-There seems to be a clear nonlinear relationship here. At very small values of soil dryness, i.e. where the berry does not dry out the soil very quickly, the growth time is much larger, whereas the growth time asymptotically approaches 0 as we look at berries that dry out the soil much more quickly. There are also very few visible data points here, meaning that there are many berries that have the same soil dryness and the same growth time. I'll try to apply a logarithmic transformation to the soil_dryness variable to see if a linear relationship emerges.
+    ## `geom_smooth()` using formula 'y ~ x'
 
-```{r GrowthTime3}
+![](PokemonVignette_files/figure-gfm/GrowthTime2-1.png)<!-- -->
+
+There seems to be a clear nonlinear relationship here. At very small
+values of soil dryness, i.e. where the berry does not dry out the soil
+very quickly, the growth time is much larger, whereas the growth time
+asymptotically approaches 0 as we look at berries that dry out the soil
+much more quickly. There are also very few visible data points here,
+meaning that there are many berries that have the same soil dryness and
+the same growth time. I’ll try to apply a logarithmic transformation to
+the soil\_dryness variable to see if a linear relationship emerges.
+
+``` r
 gBerry1 + geom_point(aes(x = log(soil_dryness), y = growth_time)) + geom_smooth(aes(x = log(soil_dryness), y = growth_time), method = lm) + ggtitle("Growth Time vs Transformed Soil Dryness")
 ```
 
-With the logarithmic transformation, the data still does not fit perfectly, but it is somewhat closer to a linear relationship. Regardless, these two variables are still clearly connected in some way due to the aforementioned overlap of data points.
+    ## `geom_smooth()` using formula 'y ~ x'
 
-Before I can plot data by item categories and other attributes, I'll need to perform various joins of the endpoints to connect the data together. I've also created another variable that combines the fling name and attribute name for convenience.
+![](PokemonVignette_files/figure-gfm/GrowthTime3-1.png)<!-- -->
 
-```{r DataOrganization}
+With the logarithmic transformation, the data still does not fit
+perfectly, but it is somewhat closer to a linear relationship.
+Regardless, these two variables are still clearly connected in some way
+due to the aforementioned overlap of data points.
+
+Before I can plot data by item categories and other attributes, I’ll
+need to perform various joins of the endpoints to connect the data
+together. I’ve also created another variable that combines the fling
+name and attribute name for convenience.
+
+``` r
 Berry.Category <- inner_join(AllBerries, AllItemCategories, by = c("item" = "items")) %>% select(-c("id.x", "natural_gift_type", "id.y", "url", "pocket"))
 Berry.Fling.Attribute <- left_join(AllBerries, AllItemFlingEffects, by = c("item" = "items")) %>% left_join(., AllItemAttributes, by = c("item" = "items")) %>% select("item", "size", "size_category", "fling_name" = "name.x", "attribute_name" = "name.y") %>% mutate(., fling_attribute = paste(fling_name, attribute_name, sep = " & "))
 
 unique(Berry.Fling.Attribute$fling_name)
+```
+
+    ## [1] "berry-effect" NA
+
+``` r
 unique(Berry.Fling.Attribute$attribute_name)
 ```
 
-Now that I've made the necessary joins, I can begin to analyze the berries by their context as items, not just as berries.
+    ## [1] "holdable-active" NA
 
-We can see that both the fling and attribute columns in `Berry.Fling.Attribute` only have one unique name that pertains to berries; however, it may still be interesting to see whether the berries that have a "berry-effect" tag or "holdable-active" attribute have a significantly different size distribution when compared to all berries.
+Now that I’ve made the necessary joins, I can begin to analyze the
+berries by their context as items, not just as berries.
 
-```{r FlingAttributeComparison}
+We can see that both the fling and attribute columns in
+`Berry.Fling.Attribute` only have one unique name that pertains to
+berries; however, it may still be interesting to see whether the berries
+that have a “berry-effect” tag or “holdable-active” attribute have a
+significantly different size distribution when compared to all berries.
+
+``` r
 gBerry2 <- ggplot(Berry.Fling.Attribute)
 gBerry2 + geom_boxplot(aes(x = size, y = fling_attribute)) + geom_point(aes(x = size, y = fling_attribute, color = fling_attribute), position = "jitter")
 ```
 
-It generally appears that all of the smallest berries at least have the holdable-active attribute, and the larger the berry is, the less likely it is to have a fling effect and/or an item attribute.
+![](PokemonVignette_files/figure-gfm/FlingAttributeComparison-1.png)<!-- -->
+
+It generally appears that all of the smallest berries at least have the
+holdable-active attribute, and the larger the berry is, the less likely
+it is to have a fling effect and/or an item attribute.
 
 Finally, I will analyze the berries by their item category.
 
-```{r BerryCategory1}
+``` r
 gBerry3 <- ggplot(Berry.Category)
 gBerry3 + geom_bar(aes(x = name, fill = as.factor(name))) + theme(axis.text.x = element_text(angle = 30))
 ```
 
-There are 7 different categories that berries fall into, with most of these categories containing quite a few different berries. Only 3 berries fall into "other", those being (via `filter(Berry.Category, name == "other")`) the enigma, jaboca, and rowap berries. Let's see if there's any meaningful difference in sizes between these categories:
+![](PokemonVignette_files/figure-gfm/BerryCategory1-1.png)<!-- -->
 
-```{r BerryCategory2}
+There are 7 different categories that berries fall into, with most of
+these categories containing quite a few different berries. Only 3
+berries fall into “other”, those being (via `filter(Berry.Category, name
+== "other")`) the enigma, jaboca, and rowap berries. Let’s see if
+there’s any meaningful difference in sizes between these categories:
+
+``` r
 Berry.Category %>% group_by(name) %>% summarize(Avg = mean(size), Sd = sd(size), Median = median(size), IQR = IQR(size))
 ```
 
-Some clear size differences become apparent here. While the "other" category is more susceptible to a low data size due to its nature and high SD, we can clearly see that "medicine" berries are much smaller than those of the other types, along with having a lower SD. The other berries do not seem to be significantly different in size, although it may be notable that "effort-drop" berries are usually about the same size, whereas the other types vary more significantly.
+    ## # A tibble: 7 × 5
+    ##   name              Avg    Sd Median   IQR
+    ##   <chr>           <dbl> <dbl>  <dbl> <dbl>
+    ## 1 baking-only     171.   88.1  136.  162. 
+    ## 2 effort-drop     151    29.9  150.   20.5
+    ## 3 in-a-pinch      123.   81.7   97    78  
+    ## 4 medicine         46.1  23.7   37.5  16.8
+    ## 5 other            80    65.6   52    61  
+    ## 6 picky-healing   126.   59.3  115    26  
+    ## 7 type-protection 116.   92.7   90   117
 
-I'll conclude with a 3-way contingency table showing off the natural gift power and smoothness, two variables I have not covered yet, sorted by item category. 
+Some clear size differences become apparent here. While the “other”
+category is more susceptible to a low data size due to its nature and
+high SD, we can clearly see that “medicine” berries are much smaller
+than those of the other types, along with having a lower SD. The other
+berries do not seem to be significantly different in size, although it
+may be notable that “effort-drop” berries are usually about the same
+size, whereas the other types vary more significantly.
 
-```{r BerryCategory3}
+I’ll conclude with a 3-way contingency table showing off the natural
+gift power and smoothness, two variables I have not covered yet, sorted
+by item category.
+
+``` r
 GiftPowerSmoothnessCat <- table(Berry.Category$natural_gift_power, Berry.Category$smoothness, Berry.Category$name)
 GiftPowerSmoothnessCat
 ```
 
-While there is a lot of empty space on these tables, due to spreading 64 berries across 149 potential values, this actually reveals a lot of similarity in the smoothness and natural gift power between berries of the same item category. Other than the berries in the baking-only category, they all have the same natural gift power within a category, and generally similar or the same smoothness.
+    ## , ,  = baking-only
+    ## 
+    ##     
+    ##      20 25 30 35 40 50 60
+    ##   60  1  0  0  0  0  0  0
+    ##   70  4  0  4  2  0  0  0
+    ##   80  0  0  0  3  0  0  0
+    ## 
+    ## , ,  = effort-drop
+    ## 
+    ##     
+    ##      20 25 30 35 40 50 60
+    ##   60  0  0  0  0  0  0  0
+    ##   70  5  0  1  0  0  0  0
+    ##   80  0  0  0  0  0  0  0
+    ## 
+    ## , ,  = in-a-pinch
+    ## 
+    ##     
+    ##      20 25 30 35 40 50 60
+    ##   60  0  0  0  0  0  0  0
+    ##   70  0  0  0  0  0  0  0
+    ##   80  0  0  0  0  5  2  2
+    ## 
+    ## , ,  = medicine
+    ## 
+    ##     
+    ##      20 25 30 35 40 50 60
+    ##   60  5  5  0  0  0  0  0
+    ##   70  0  0  0  0  0  0  0
+    ##   80  0  0  0  0  0  0  0
+    ## 
+    ## , ,  = other
+    ## 
+    ##     
+    ##      20 25 30 35 40 50 60
+    ##   60  0  0  0  0  0  0  0
+    ##   70  0  0  0  0  0  0  0
+    ##   80  0  0  0  0  0  0  3
+    ## 
+    ## , ,  = picky-healing
+    ## 
+    ##     
+    ##      20 25 30 35 40 50 60
+    ##   60  0  5  0  0  0  0  0
+    ##   70  0  0  0  0  0  0  0
+    ##   80  0  0  0  0  0  0  0
+    ## 
+    ## , ,  = type-protection
+    ## 
+    ##     
+    ##      20 25 30 35 40 50 60
+    ##   60  0  0 10  7  0  0  0
+    ##   70  0  0  0  0  0  0  0
+    ##   80  0  0  0  0  0  0  0
+
+While there is a lot of empty space on these tables, due to spreading 64
+berries across 149 potential values, this actually reveals a lot of
+similarity in the smoothness and natural gift power between berries of
+the same item category. Other than the berries in the baking-only
+category, they all have the same natural gift power within a category,
+and generally similar or the same smoothness.
