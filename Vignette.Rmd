@@ -435,13 +435,21 @@ gBerry1 + geom_point(aes(x = growth_time, y = size, color = size_category)) + ge
 
 We can see in this growth time versus size plot that there doesn't seem to be much of a relationship between the growth time and the berry size. Even if we sectioned it off into each of the berry size categories, it doesn't look like there would be a significant relationship within those categories.
 
+Another possible answer for "what does growth time determine" is the natural gift power of each berry.
+
 ```{r GrowthTime2}
+gBerry1 + geom_point(aes(x = natural_gift_power, y = growth_time)) + geom_smooth(aes(x = natural_gift_power, y = growth_time), method = lm, col = "Green") + ggtitle("Growth Time versus Gift Power")
+```
+
+There's a little bit more of a relationship here, mostly due to all of the berries with 80 gift power taking either a growth time of 15 or 24, so this might be a slightly clearer answer.
+
+```{r GrowthTime3}
 gBerry1 + geom_point(aes(x = soil_dryness, y = growth_time)) + geom_smooth(aes(x = soil_dryness, y = growth_time), method = lm) + ggtitle("Growth Time vs Soil Dryness")
 ```
 
 There seems to be a clear nonlinear relationship here. At very small values of soil dryness, i.e. where the berry does not dry out the soil very quickly, the growth time is much larger, whereas the growth time asymptotically approaches 0 as we look at berries that dry out the soil much more quickly. There are also very few visible data points here, meaning that there are many berries that have the same soil dryness and the same growth time. I'll try to apply a logarithmic transformation to the soil_dryness variable to see if a linear relationship emerges.
 
-```{r GrowthTime3}
+```{r GrowthTime4}
 gBerry1 + geom_point(aes(x = log(soil_dryness), y = growth_time)) + geom_smooth(aes(x = log(soil_dryness), y = growth_time), method = lm) + ggtitle("Growth Time vs Transformed Soil Dryness")
 ```
 
