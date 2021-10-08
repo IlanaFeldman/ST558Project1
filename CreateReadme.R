@@ -8,3 +8,4 @@ rmarkdown::render("Vignette.Rmd",
                   output_format = "github_document",
                   output_file = "PokemonVignette.md",
 )
+
